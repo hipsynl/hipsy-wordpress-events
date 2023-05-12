@@ -29,10 +29,11 @@ function hipsy_events_shortcode($atts)
             $formatted_time = $date->format('H:i');
             $date_end = get_post_meta(get_the_ID(), 'hipsy_events_date_end', true);
             $image = get_post_meta(get_the_ID(), 'hipsy_events_image', true);
+            $thumbnail = get_the_post_thumbnail(get_the_ID(), 'medium', array('class' => 'event-image'));
 
             $output .= <<<EOT
                 <a class="event" href="{$url}">
-                    <img class="event-image" src="{$image}" alt="Event image" />
+                    {$thumbnail}
                     <div class="event-info">
                         <div class="event-date">{$formatted_date} at {$formatted_time}</div>
                         <div class="event-title">{$title}</div>
@@ -46,6 +47,5 @@ function hipsy_events_shortcode($atts)
     $output .= '</div>';
 
     return $output;
-
 }
 add_shortcode('hipsy_events', 'hipsy_events_shortcode');

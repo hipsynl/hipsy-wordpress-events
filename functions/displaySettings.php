@@ -16,7 +16,7 @@ function hipsy_events_settings_page()
                     <th scope="row"><?php esc_html_e('API Key', 'hipsy-events'); ?></th>
                     <td>
                         <?php $value = get_option('hipsy_events_api_key'); ?>
-                        <input type="password" style="width:100%;" id="hipsy_events_api_key" name="hipsy_events_api_key" value="<?php echo esc_attr($value); ?>" />
+                        <input required type="password" style="width:100%;" id="hipsy_events_api_key" name="hipsy_events_api_key" value="<?php echo esc_attr($value); ?>" />
                         <p><a href="https://hipsy.nl/app/api-keys" target="_blank" class="description"><?php esc_html_e('Generate an API key here', 'hipsy-events'); ?></a>.</p>
                     </td>
                 </tr>
@@ -24,7 +24,7 @@ function hipsy_events_settings_page()
                     <th scope="row"><?php esc_html_e('Organisation Slug', 'hipsy-events'); ?></th>
                     <td>
                         <?php $value = get_option('hipsy_events_organisation_slug'); ?>
-                        <input type="text" style="width:100%;" id="hipsy_events_organisation_slug" name="hipsy_events_organisation_slug" value="<?php echo esc_attr($value); ?>" />
+                        <input required type="text" style="width:100%;" id="hipsy_events_organisation_slug" name="hipsy_events_organisation_slug" value="<?php echo esc_attr($value); ?>" />
                         <p class="description"><?php esc_html_e('Enter the slug for your organisation, e.g. "my-organisation".', 'hipsy-events'); ?></p>
                     </td>
                 </tr>

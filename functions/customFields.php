@@ -22,23 +22,19 @@ function hipsy_events_render_meta_box($post)
     $date = get_post_meta($post->ID, 'hipsy_events_date', true);
     $date_end = get_post_meta($post->ID, 'hipsy_events_date_end', true);
     $link = get_post_meta($post->ID, 'hipsy_events_link', true);
-    $image = get_post_meta($post->ID, 'hipsy_events_image', true);
 
     // Output the fields
     echo '<label style="display:inline-block;width:85px;margin-bottom:5px;" for="hipsy_events_location">Location:</label>';
     echo '<input style="max-width:500px;width:100%;margin-bottom:5px;" type="text" id="hipsy_events_location" name="hipsy_events_location" value="' . esc_attr($location) . '"><br>';
 
     echo '<label style="display:inline-block;width:85px;margin-bottom:5px;" for="hipsy_events_date">Date:</label>';
-    echo '<input style="max-width:500px;width:100%;margin-bottom:5px;" type="text" id="hipsy_events_date" name="hipsy_events_date" value="' . esc_attr($date) . '"><br>';
+    echo '<input style="max-width:500px;width:100%;margin-bottom:5px;" type="datetime-local" id="hipsy_events_date" name="hipsy_events_date" value="' . esc_attr($date) . '"><br>';
 
     echo '<label style="display:inline-block;width:85px;margin-bottom:5px;" for="hipsy_events_date_end">End Date:</label>';
-    echo '<input style="max-width:500px;width:100%;margin-bottom:5px;" type="text" id="hipsy_events_date_end" name="hipsy_events_date_end" value="' . esc_attr($date_end) . '"><br>';
+    echo '<input style="max-width:500px;width:100%;margin-bottom:5px;" type="datetime-local" id="hipsy_events_date_end" name="hipsy_events_date_end" value="' . esc_attr($date_end) . '"><br>';
 
     echo '<label style="display:inline-block;width:85px;margin-bottom:5px;" for="hipsy_events_link">Link:</label>';
     echo '<input style="max-width:500px;width:100%;margin-bottom:5px;" type="text" id="hipsy_events_link" name="hipsy_events_link" value="' . esc_attr($link) . '"><br>';
-
-    echo '<label style="display:inline-block;width:85px;margin-bottom:5px;" for="hipsy_events_image">Image:</label>';
-    echo '<input style="max-width:500px;width:100%;margin-bottom:5px;" type="text" id="hipsy_events_image" name="hipsy_events_image" value="' . esc_attr($image) . '"><br>';
 }
 
 // Save the custom meta box fields
@@ -55,9 +51,6 @@ function hipsy_events_save_meta_box($post_id)
     }
     if (isset($_POST['hipsy_events_link'])) {
         update_post_meta($post_id, 'hipsy_events_link', sanitize_text_field($_POST['hipsy_events_link']));
-    }
-    if (isset($_POST['hipsy_events_image'])) {
-        update_post_meta($post_id, 'hipsy_events_image', sanitize_text_field($_POST['hipsy_events_image']));
     }
 }
 add_action('save_post_events', 'hipsy_events_save_meta_box');

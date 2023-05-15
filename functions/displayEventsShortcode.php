@@ -14,7 +14,7 @@ function hipsy_events_shortcode($atts)
         'orderby' => 'meta_value',
         'order' => 'ASC',
     );
-    $output = '<div class="events">';
+    $output = loop_wrapper_start();
     $events_query = new WP_Query($args);
     if ($events_query->have_posts()) :
         while ($events_query->have_posts()) :
@@ -23,28 +23,22 @@ function hipsy_events_shortcode($atts)
             $title = get_the_title();
             $url = get_permalink();
             $location = get_post_meta(get_the_ID(), 'hipsy_events_location', true);
+            // Date
             $date_str = get_post_meta(get_the_ID(), 'hipsy_events_date', true);
             $date = new DateTime($date_str);
             $formatted_date = $date->format('F j');
             $formatted_time = $date->format('H:i');
-            $date_end = get_post_meta(get_the_ID(), 'hipsy_events_date_end', true);
-            $image = get_post_meta(get_the_ID(), 'hipsy_events_image', true);
+            $date_str2 = get_post_meta(get_the_ID(), 'hipsy_events_date_end', true);
+            $date_end = new DateTime($date_str2);
+            $formatted_time_end = $date_end->format('H:i');
+
             $thumbnail = get_the_post_thumbnail(get_the_ID(), 'medium', array('class' => 'event-image'));
 
-            $output .= <<<EOT
-                <a class="event" href="{$url}">
-                    {$thumbnail}
-                    <div class="event-info">
-                        <div class="event-date">{$formatted_date} at {$formatted_time}</div>
-                        <div class="event-title">{$title}</div>
-                        <div class="event-location">{$location}</div>
-                    </div>
-                </a>
-            EOT;
+            $output .= loop_item($url, $thumbnail, $formatted_date, $formatted_time, $formatted_time_end, $title, $location);
         endwhile;
     endif;
     wp_reset_postdata();
-    $output .= '</div>';
+    $output .= loop_wrapper_end();
 
     return $output;
 }

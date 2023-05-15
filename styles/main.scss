@@ -1,0 +1,107 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+// This file is using Tailwind CSS in order to keep the styles as minimal as possible.
+// For more info, visit https://tailwindcss.com/docs
+
+// Events wrapper
+.events {
+  @apply flex items-center justify-center flex-col gap-10 sm:gap-6 my-4  max-w-prose mx-auto;
+
+  // Event card
+  .event {
+    @apply flex flex-col gap-x-3 w-full items-center sm:flex-row rounded-md overflow-clip shadow-md text-inherit;  
+    &:hover {
+      @apply cursor-pointer bg-slate-50;
+    }
+    
+    // Event image
+    .event-image {
+      @apply w-full sm:w-56 h-auto sm:aspect-video object-cover;
+    }
+
+    // Event info
+    .event-info {
+      @apply text-left items-start flex flex-col gap-2 p-4;
+
+      // Remove possible default list styles from the theme
+      > * {
+        @apply my-0 py-0;
+      }
+
+      // Event date
+      .event-date{
+        @apply text-slate-400 text-sm uppercase tracking-widest font-bold;
+      }
+
+      // Event title
+      .event-title {
+        @apply text-xl leading-none line-clamp-2 sm:line-clamp-1;
+      }
+
+      // Event location
+      .event-location {
+        @apply line-clamp-1 text-sm overflow-ellipsis text-slate-400;
+      }
+    }
+  }  
+}
+
+.events-overview-page{
+  @apply text-center mb-32;
+}
+
+.go-back{
+  @apply text-slate-300 hover:text-slate-400 text-sm;
+}
+.event-single-header + .go-back{
+  @apply block m-2;
+}
+
+.event-content-wrapper{
+  @apply px-4 md:px-6 lg:px-8;
+}
+
+.event-single-header{
+  @apply grid md:grid-cols-2;
+  .event-image{
+    @apply object-cover md:order-2 order-1 md:-mb-6 md:rounded-b-lg;
+  }
+
+  .event-info{
+    @apply bg-slate-50 lg:px-8 md:px-6 px-4 py-6 md:py-4 flex flex-col justify-center lg:gap-2 md:gap-0 gap-2 md:order-1 order-2;
+
+    // Remove possible default list styles from the theme
+    * {
+      @apply my-0;
+    }
+    .event-date{
+      @apply text-slate-400 uppercase tracking-widest font-bold;
+    }
+    .event-location{
+      @apply text-slate-400 line-clamp-2 text-sm lg:text-base;
+    }
+  }
+
+}
+
+.ticket{
+  @apply grid grid-cols-3 gap-10;
+  .ticket-description{
+    @apply text-sm text-slate-500 font-light;
+  }
+  .ticket-info{
+    @apply col-span-2;
+  }
+  .ticket-price-wrapper{
+    .ticket-price{
+      @apply text-lg;
+    }
+  }
+}
+
+
+.event-button{
+  @apply bg-green-600 hover:bg-green-500 text-white font-bold tracking-widest py-2 px-4 rounded-md cursor-pointer inline-block transition-colors self-start hover:text-white;
+}

@@ -1,0 +1,20 @@
+{
+  "name": "hipsy-events",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/sefrijn/hipsy-wordpress-events.git",
+  "author": "How About Yes <sefrijn@gmail.com>",
+  "license": "MIT",
+  "devDependencies": {
+    "autoprefixer": "^10.4.14",
+    "laravel-mix": "^6.0.49",
+    "resolve-url-loader": "^5.0.0",
+    "sass": "^1.62.1",
+    "sass-loader": "^12.1.0",
+    "tailwindcss": "^3.3.2"
+  },
+  "scripts": {
+    "dev": "concurrently \"yarn mix watch\" \"yarn tailwind\"",
+    "tailwind": "tailwindcss -i ./styles/css/main.css -o ./styles/dist/main.css --watch"
+  }
+}

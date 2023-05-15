@@ -2,6 +2,17 @@
 
 function createEvent($event)
 {
+    $timezone = new DateTimeZone(wp_timezone_string());
+    $stored_date = new DateTime($event['date']);
+    $stored_date->setTimezone($timezone);
+
+    $stored_date_until = new DateTime($event['date_until']);
+    $stored_date_until->setTimezone($timezone);
+
+    $formatted_date = $stored_date->format('Y-m-d\TH:i');
+    $formatted_date_until = $stored_date_until->format('Y-m-d\TH:i');
+
+
     $post_arr = array(
         'post_title'   => $event['title'],
         'post_type'    => 'events',
@@ -9,10 +20,10 @@ function createEvent($event)
         'post_status'  => 'publish',
         'meta_input'   => array(
             'hipsy_events_location' => $event['location'],
-            'hipsy_events_date' => $event['date'],
-            'hipsy_events_date_end' => $event['date_until'],
-            'hipsy_events_link' => $event['url_hipsy'],
-            'hipsy_events_image' => $event['picture'],
+            'hipsy_events_date' => $formatted_date,
+            'hipsy_events_date_end' => $formatted_date_until,
+            'hipsy_events_link' => $event['url_ticketshop'],
+            'hipsy_ticket_info' => serialize($event['tickets'])
         ),
     );
     if (get_post($event['id'])) {

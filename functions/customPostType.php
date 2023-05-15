@@ -16,7 +16,7 @@ function create_posttype()
                 'view_item' => __('View Event')
             ),
             'supports' => array(
-                'title','editor','thumbnail','custom-fields','page-attributes'
+                'title', 'editor', 'thumbnail', 'custom-fields'
             ),
             'menu_position' => 20,
             'public' => true,

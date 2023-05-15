@@ -8,7 +8,7 @@ Author: How About Yes
 
 
 
-
+include("templates/loopItem.php");
 include("functions/styles.php");
 include("functions/displayEventsShortcode.php");
 include("functions/deleteOldEvents.php");
@@ -21,3 +21,4 @@ include("functions/customPostType.php");
 include("functions/submenuItem.php");
 include("functions/customFields.php");
 include("functions/customTemplates.php");
+include("functions/adminColumns.php");

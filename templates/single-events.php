@@ -1,6 +1,5 @@
 <?php get_header(); ?>
 
-
 <?php
 function ticket($name, $price, $description)
 {

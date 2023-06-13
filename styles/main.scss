@@ -1,52 +1,59 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-
 // This file is using Tailwind CSS in order to keep the styles as minimal as possible.
 // For more info, visit https://tailwindcss.com/docs
 
 // Events wrapper
-.events {
+.hipsy-events-widget {
   @apply flex items-center justify-center flex-col gap-10 sm:gap-6 my-4  max-w-prose mx-auto;
-
-  // Event card
-  .event {
-    @apply flex flex-col gap-x-3 w-full items-center sm:flex-row rounded-md overflow-clip shadow-md text-inherit;  
-    &:hover {
-      @apply cursor-pointer bg-slate-50;
-    }
-    
-    // Event image
-    .event-image {
-      @apply w-full sm:w-56 h-auto sm:aspect-video object-cover;
-    }
-
-    // Event info
-    .event-info {
-      @apply text-left items-start flex flex-col gap-2 p-4;
-
-      // Remove possible default list styles from the theme
-      > * {
-        @apply my-0 py-0;
-      }
-
-      // Event date
-      .event-date{
-        @apply text-slate-400 text-sm uppercase tracking-widest font-bold;
-      }
-
-      // Event title
-      .event-title {
-        @apply text-xl leading-none line-clamp-2 sm:line-clamp-1;
-      }
-
-      // Event location
-      .event-location {
-        @apply line-clamp-1 text-sm overflow-ellipsis text-slate-400;
-      }
-    }
-  }  
+  .event{
+    @apply no-underline;
+  }
 }
+
+// Event card
+.event {
+  @apply flex flex-col gap-x-3 w-full items-center sm:flex-row rounded-md overflow-clip shadow-md text-inherit bg-white/50 text-black dark:bg-slate-900/60 dark:text-white transition-colors;
+  
+  
+  // Event image
+  .event-image-wrapper{
+    @apply w-full sm:w-56 h-auto sm:aspect-video shrink-0 overflow-clip rounded-md;
+
+  }
+  .event-image {
+    @apply w-full h-full object-cover transition-all block;
+  }
+  &:hover {
+    @apply cursor-pointer dark:bg-slate-900/80;
+    .event-image {
+      scale: 1.05;
+    }
+  }
+  // Event info
+  .event-info {
+    @apply text-left items-start flex flex-col gap-2 p-4;
+
+    // Remove possible default list styles from the theme
+    > * {
+      @apply my-0 py-0;
+    }
+
+    // Event date
+    .event-date{
+      @apply text-black/70 dark:text-white/60 text-sm uppercase tracking-widest font-bold;
+    }
+
+    // Event title
+    .event-title {
+      @apply text-xl leading-none line-clamp-2 sm:line-clamp-1;
+    }
+
+    // Event location
+    .event-location {
+      @apply text-black/70 dark:text-white/60 line-clamp-1 text-sm overflow-ellipsis;
+    }
+  }
+}  
+
 
 .events-overview-page{
   @apply text-center mb-32;

@@ -7,7 +7,7 @@ function hipsy_events_settings_page()
 ?>
     <div class="wrap" style="max-width:700px;">
         <h1><?php esc_html_e('Hipsy Events Sync', 'hipsy-events'); ?></h1>
-        <p>On this page you can synchronise all your events on Hipsy. Just click on "Sync Hipsy events" to load all your events. Whenever you make changes to events on Hipsy, you can also click this button to sync your changes.</p>
+        <p>On this page you update the hipsy settings and synchronise all your events on Hipsy. Just click on "Sync Hipsy events" to load all your events. Whenever you make changes to events on Hipsy, you can also click this button to sync your changes to your own Wordpress site. It's magic!</p>
         <form action="edit.php?post_type=events&page=hipsy_events_settings" method="post">
             <?php settings_fields('hipsy_events_settings'); ?>
             <?php do_settings_sections('hipsy_events'); ?>
@@ -26,6 +26,27 @@ function hipsy_events_settings_page()
                         <?php $value = get_option('hipsy_events_organisation_slug'); ?>
                         <input required type="text" style="width:100%;" id="hipsy_events_organisation_slug" name="hipsy_events_organisation_slug" value="<?php echo esc_attr($value); ?>" />
                         <p class="description"><?php esc_html_e('Enter the slug for your organisation, e.g. "my-organisation".', 'hipsy-events'); ?></p>
+                    </td>
+                </tr>
+                <tr>
+                    <th scope="row"><?php esc_html_e('Button Link', 'hipsy-events'); ?></th>
+                    <td>
+                        <?php $value = get_option('hipsy_events_button_link'); ?>
+                        <select name="hipsy_events_button_link" id="hipsy_events_button_link">
+                            <option value="event" <?php selected($value, 'event'); ?>>Event page</option>
+                            <option value="ticket" <?php selected($value, 'ticket'); ?>>Ticketshop</option>
+                            <option value="popup" disabled <?php selected($value, 'popup'); ?>>Popup</option>
+                        </select>
+                        <p class="description"><?php esc_html_e('Where should the ticket button link to?', 'hipsy-events'); ?></p>
+                    </td>
+                </tr>
+                <tr>
+                    <!-- Create a toggle button for dark and light mode -->
+                    <th scope="row"><?php esc_html_e('Dark Mode', 'hipsy-events'); ?></th>
+                    <td>
+                        <?php $value = get_option('hipsy_events_dark_mode'); ?>
+                        <input type="checkbox" id="hipsy_events_dark_mode" name="hipsy_events_dark_mode" value="1" <?php checked(1, $value); ?> />
+                        <p class="description"><?php esc_html_e('Enable dark mode for the widget.', 'hipsy-events'); ?></p>
                     </td>
                 </tr>
             </table>

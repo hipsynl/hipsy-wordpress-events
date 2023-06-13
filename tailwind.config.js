@@ -1,11 +1,15 @@
 module.exports = {
-  content: ["./*.php", "./**/*.php"],
+  content: ["./**/*.php"],
+  darkMode: "class",
   theme: {
     extend: {
       colors:{
         'hipsy_teal': '#d0dedc',
       }
     },
+  },
+  variants: {
+    backgroundColor: ['dark'],
   },
   plugins: [],
 };

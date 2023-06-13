@@ -1,5 +1,23 @@
 <?php
 
+register_rest_field('events', 'metadata', array(
+    'get_callback' => function ($data) {
+        return get_post_meta($data['id'], '', '');
+    },
+));
+
+function register_hipsy_events_date_meta()
+{
+    register_meta('post', 'hipsy_events_date', array(
+        'type'              => 'string',
+        'description'       => 'Hipsy Events Date',
+        'single'            => true,
+        'sanitize_callback' => 'sanitize_text_field',
+        'show_in_rest'      => true,
+    ));
+}
+add_action('init', 'register_hipsy_events_date_meta');
+
 // Add custom meta boxes for the "events" post type
 function hipsy_events_add_meta_boxes()
 {

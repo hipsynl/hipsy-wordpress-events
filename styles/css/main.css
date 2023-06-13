@@ -1,32 +1,39 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-.events {
+.hipsy-events-widget {
   @apply flex items-center justify-center flex-col gap-10 sm:gap-6 my-4  max-w-prose mx-auto;
 }
-.events .event {
-  @apply flex flex-col gap-x-3 w-full items-center sm:flex-row rounded-md overflow-clip shadow-md text-inherit;
+.hipsy-events-widget .event {
+  @apply no-underline;
 }
-.events .event:hover {
-  @apply cursor-pointer bg-slate-50;
+
+.event {
+  @apply flex flex-col gap-x-3 w-full items-center sm:flex-row rounded-md overflow-clip shadow-md text-inherit bg-white/50 text-black dark:bg-slate-900/60 dark:text-white transition-colors;
 }
-.events .event .event-image {
-  @apply w-full sm:w-56 h-auto sm:aspect-video object-cover;
+.event .event-image-wrapper {
+  @apply w-full sm:w-56 h-auto sm:aspect-video shrink-0 overflow-clip rounded-md;
 }
-.events .event .event-info {
+.event .event-image {
+  @apply w-full h-full object-cover transition-all block;
+}
+.event:hover {
+  @apply cursor-pointer dark:bg-slate-900/80;
+}
+.event:hover .event-image {
+  scale: 1.05;
+}
+.event .event-info {
   @apply text-left items-start flex flex-col gap-2 p-4;
 }
-.events .event .event-info > * {
+.event .event-info > * {
   @apply my-0 py-0;
 }
-.events .event .event-info .event-date {
-  @apply text-slate-400 text-sm uppercase tracking-widest font-bold;
+.event .event-info .event-date {
+  @apply text-black/70 dark:text-white/60 text-sm uppercase tracking-widest font-bold;
 }
-.events .event .event-info .event-title {
+.event .event-info .event-title {
   @apply text-xl leading-none line-clamp-2 sm:line-clamp-1;
 }
-.events .event .event-info .event-location {
-  @apply line-clamp-1 text-sm overflow-ellipsis text-slate-400;
+.event .event-info .event-location {
+  @apply text-black/70 dark:text-white/60 line-clamp-1 text-sm overflow-ellipsis;
 }
 
 .events-overview-page {

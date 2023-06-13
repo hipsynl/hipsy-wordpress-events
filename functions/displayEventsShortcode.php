@@ -14,7 +14,10 @@ function hipsy_events_shortcode($atts)
         'orderby' => 'meta_value',
         'order' => 'ASC',
     );
-    $output = loop_wrapper_start();
+    $value = get_option('hipsy_events_dark_mode');
+    $dark_mode = $value === "1" ? 'dark' : '';
+
+    $output = loop_wrapper_start($dark_mode);
     $events_query = new WP_Query($args);
     if ($events_query->have_posts()) :
         while ($events_query->have_posts()) :

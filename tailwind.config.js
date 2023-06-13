@@ -5,6 +5,7 @@ module.exports = {
     extend: {
       colors:{
         'hipsy_teal': '#d0dedc',
+        'hipsy_dark': "#1a5e58",
       }
     },
   },

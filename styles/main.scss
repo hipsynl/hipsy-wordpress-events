@@ -11,7 +11,7 @@
 
 // Event card
 .event {
-  @apply flex flex-col gap-x-3 w-full items-center sm:flex-row rounded-md overflow-clip shadow-md text-inherit bg-white/50 text-black dark:bg-slate-900/60 dark:text-white transition-colors;
+  @apply flex flex-col gap-x-3 w-full items-center sm:flex-row rounded-md overflow-clip shadow-md text-inherit bg-black/5 dark:bg-gray-500/5 transition-colors;
   
   
   // Event image
@@ -23,7 +23,7 @@
     @apply w-full h-full object-cover transition-all block;
   }
   &:hover {
-    @apply cursor-pointer dark:bg-slate-900/80;
+    @apply cursor-pointer bg-gray-500/5 dark:bg-gray-400/5;
     .event-image {
       scale: 1.05;
     }
@@ -39,7 +39,7 @@
 
     // Event date
     .event-date{
-      @apply text-black/70 dark:text-white/60 text-sm uppercase tracking-widest font-bold;
+      @apply opacity-60 text-sm uppercase tracking-widest font-bold;
     }
 
     // Event title
@@ -49,64 +49,91 @@
 
     // Event location
     .event-location {
-      @apply text-black/70 dark:text-white/60 line-clamp-1 text-sm overflow-ellipsis;
+      @apply opacity-60 line-clamp-1 text-sm overflow-ellipsis;
     }
   }
 }  
 
 
-.events-overview-page{
-  @apply text-center mb-32;
-}
 
-.go-back{
-  @apply text-slate-300 hover:text-slate-400 text-sm;
-}
-.event-single-header + .go-back{
-  @apply block m-2;
-}
-
-.event-content-wrapper{
-  @apply px-4 md:px-6 lg:px-8;
-}
-
-.event-single-header{
-  @apply grid md:grid-cols-2;
-  .event-image{
-    @apply object-cover md:order-2 order-1 md:-mb-6 md:rounded-b-lg;
-  }
-
-  .event-info{
-    @apply bg-slate-50 lg:px-8 md:px-6 px-4 py-6 md:py-4 flex flex-col justify-center lg:gap-2 md:gap-0 gap-2 md:order-1 order-2;
-
-    // Remove possible default list styles from the theme
-    * {
-      @apply my-0;
+  .event-single-header{
+    @apply grid md:grid-cols-2 bg-black/5 dark:bg-gray-500/5 shadow-md;
+    .event-image{
+      @apply object-cover md:order-2 order-1 md:-mb-6 md:rounded-b-lg;
     }
-    .event-date{
-      @apply text-slate-400 uppercase tracking-widest font-bold;
+  
+    .event-info{
+      @apply lg:px-8 md:px-6 px-4 py-6 md:py-4 flex flex-col justify-center lg:gap-2 md:gap-0 gap-2 md:order-1 order-2;
+  
+      // Remove possible default list styles from the theme
+      * {
+        @apply my-0;
+      }
+      h2{
+        @apply leading-tight;
+      }
+      .event-date{
+        @apply text-slate-400 uppercase tracking-widest font-bold;
+      }
+      .event-location{
+        @apply text-slate-400 line-clamp-2 text-sm lg:text-base;
+      }
     }
-    .event-location{
-      @apply text-slate-400 line-clamp-2 text-sm lg:text-base;
+  
+  }  
+  .event-single-main{
+    @apply grid grid-cols-1 lg:grid-cols-2 md:gap-8 relative;
+
+
+    > div:last-of-type{
+      @apply  order-1 lg:order-2;
     }
+    > div:first-of-type{
+        @apply  order-2 lg:order-1;
+    }
+    .event-content-wrapper{
+      @apply md:py-16 py-4 px-4 md:px-6 lg:px-8;
+    }
+    
+    
+    .ticket-content-wrapper{
+      @apply md:sticky top-6 self-start text-black dark:text-white;
+      .ticket-content {
+        @apply p-5 bg-hipsy_teal dark:bg-hipsy_dark rounded-md relative;
+        .ticket-list{
+          @apply flex flex-col gap-5 mb-5;
+        }
+      }
+      .ticket{
+        @apply grid grid-cols-3 gap-10;
+        .ticket-description{
+          @apply text-xs opacity-70;
+        }
+        .ticket-info{
+          @apply col-span-2;
+        }
+        .ticket-price-wrapper{
+          .ticket-price{
+            @apply text-lg;
+          }
+        }
+      }
+      .hipsy-logo{
+        @apply absolute bottom-5 right-5 text-black dark:text-white flex text-xs items-center;
+        img{
+          @apply w-16 h-auto object-contain;
+        }
+      }
+    
+    }
+    
+
+
   }
 
-}
-
-.ticket{
-  @apply grid grid-cols-3 gap-10;
-  .ticket-description{
-    @apply text-sm text-slate-500 font-light;
+  .go-back{
+    @apply hover:opacity-90 text-sm;
   }
-  .ticket-info{
-    @apply col-span-2;
-  }
-  .ticket-price-wrapper{
-    .ticket-price{
-      @apply text-lg;
-    }
-  }
-}
 
 
 .event-button{

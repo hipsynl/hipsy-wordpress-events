@@ -6,7 +6,7 @@
 }
 
 .event {
-  @apply flex flex-col gap-x-3 w-full items-center sm:flex-row rounded-md overflow-clip shadow-md text-inherit bg-white/50 text-black dark:bg-slate-900/60 dark:text-white transition-colors;
+  @apply flex flex-col gap-x-3 w-full items-center sm:flex-row rounded-md overflow-clip shadow-md text-inherit bg-black/5 dark:bg-gray-500/5 transition-colors;
 }
 .event .event-image-wrapper {
   @apply w-full sm:w-56 h-auto sm:aspect-video shrink-0 overflow-clip rounded-md;
@@ -15,7 +15,7 @@
   @apply w-full h-full object-cover transition-all block;
 }
 .event:hover {
-  @apply cursor-pointer dark:bg-slate-900/80;
+  @apply cursor-pointer bg-gray-500/5 dark:bg-gray-400/5;
 }
 .event:hover .event-image {
   scale: 1.05;
@@ -27,42 +27,29 @@
   @apply my-0 py-0;
 }
 .event .event-info .event-date {
-  @apply text-black/70 dark:text-white/60 text-sm uppercase tracking-widest font-bold;
+  @apply opacity-60 text-sm uppercase tracking-widest font-bold;
 }
 .event .event-info .event-title {
   @apply text-xl leading-none line-clamp-2 sm:line-clamp-1;
 }
 .event .event-info .event-location {
-  @apply text-black/70 dark:text-white/60 line-clamp-1 text-sm overflow-ellipsis;
-}
-
-.events-overview-page {
-  @apply text-center mb-32;
-}
-
-.go-back {
-  @apply text-slate-300 hover:text-slate-400 text-sm;
-}
-
-.event-single-header + .go-back {
-  @apply block m-2;
-}
-
-.event-content-wrapper {
-  @apply px-4 md:px-6 lg:px-8;
+  @apply opacity-60 line-clamp-1 text-sm overflow-ellipsis;
 }
 
 .event-single-header {
-  @apply grid md:grid-cols-2;
+  @apply grid md:grid-cols-2 bg-black/5 dark:bg-gray-500/5 shadow-md;
 }
 .event-single-header .event-image {
   @apply object-cover md:order-2 order-1 md:-mb-6 md:rounded-b-lg;
 }
 .event-single-header .event-info {
-  @apply bg-slate-50 lg:px-8 md:px-6 px-4 py-6 md:py-4 flex flex-col justify-center lg:gap-2 md:gap-0 gap-2 md:order-1 order-2;
+  @apply lg:px-8 md:px-6 px-4 py-6 md:py-4 flex flex-col justify-center lg:gap-2 md:gap-0 gap-2 md:order-1 order-2;
 }
 .event-single-header .event-info * {
   @apply my-0;
+}
+.event-single-header .event-info h2 {
+  @apply leading-tight;
 }
 .event-single-header .event-info .event-date {
   @apply text-slate-400 uppercase tracking-widest font-bold;
@@ -71,17 +58,48 @@
   @apply text-slate-400 line-clamp-2 text-sm lg:text-base;
 }
 
-.ticket {
+.event-single-main {
+  @apply grid grid-cols-1 lg:grid-cols-2 md:gap-8 relative;
+}
+.event-single-main > div:last-of-type {
+  @apply order-1 lg:order-2;
+}
+.event-single-main > div:first-of-type {
+  @apply order-2 lg:order-1;
+}
+.event-single-main .event-content-wrapper {
+  @apply md:py-16 py-4 px-4 md:px-6 lg:px-8;
+}
+.event-single-main .ticket-content-wrapper {
+  @apply md:sticky top-6 self-start text-black dark:text-white;
+}
+.event-single-main .ticket-content-wrapper .ticket-content {
+  @apply p-5 bg-hipsy_teal dark:bg-hipsy_dark rounded-md relative;
+}
+.event-single-main .ticket-content-wrapper .ticket-content .ticket-list {
+  @apply flex flex-col gap-5 mb-5;
+}
+.event-single-main .ticket-content-wrapper .ticket {
   @apply grid grid-cols-3 gap-10;
 }
-.ticket .ticket-description {
-  @apply text-sm text-slate-500 font-light;
+.event-single-main .ticket-content-wrapper .ticket .ticket-description {
+  @apply text-xs opacity-70;
 }
-.ticket .ticket-info {
+.event-single-main .ticket-content-wrapper .ticket .ticket-info {
   @apply col-span-2;
 }
-.ticket .ticket-price-wrapper .ticket-price {
+.event-single-main .ticket-content-wrapper .ticket .ticket-price-wrapper .ticket-price {
   @apply text-lg;
+}
+.event-single-main .ticket-content-wrapper .hipsy-logo {
+  @apply absolute bottom-5 right-5 text-black dark:text-white flex text-xs items-center;
+}
+.event-single-main .ticket-content-wrapper .hipsy-logo img {
+  @apply w-16 h-auto object-contain;
+}
+
+.go-back {
+  @apply hover:opacity-90 text-sm;
 }
 
 .event-button {

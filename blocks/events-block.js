@@ -74,14 +74,6 @@
                 fetchItems(attributes.numberOfPosts);
             }, []);
 
-            // Fetch events when the number of posts changes
-            // useEffect(function () {
-            //     if (props.isSelected || !attributes.eventList) {
-            //         console.log("fetch items!");
-            //         fetchItems();
-            //     }
-            // }, [attributes.numberOfPosts]);
-
             return el(
                 'div',
                 null,

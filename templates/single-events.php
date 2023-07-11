@@ -15,7 +15,7 @@ $dark_mode = $value === "1" ? 'dark' : '';
             </div>
             <div class="ticket-price-wrapper">
                 <div class="ticket-price">{$price}</div>
-                <div class="ticket-description">includes €0,80 servicecosts</div>
+                <div class="ticket-description">includes servicecosts</div>
             </div>
         </div>
     EOT;
@@ -36,6 +36,15 @@ $dark_mode = $value === "1" ? 'dark' : '';
             $date_end = new DateTime($date_str2);
             $formatted_time_end = $date_end->format('H:i');
 
+            $url = get_post_meta(get_the_ID(), 'hipsy_events_link', true);
+            // Remove trailing slash if present
+            if (substr($url, -1) === '/') {
+                $url = substr($url, 0, -1);
+            }
+            // Get the part after the last slash
+            $result = substr(strrchr($url, '/'), 1);
+            $link_type = get_option('hipsy_events_button_link');
+            $url = "https://www.hipsy.nl/{$link_type}/{$result}";
 
             $tickets = unserialize(get_post_meta(get_the_ID(), 'hipsy_ticket_info', true));
 
@@ -54,7 +63,7 @@ $dark_mode = $value === "1" ? 'dark' : '';
             <div class="event-single-main">
                 <div class="event-content-wrapper">
                     <?php the_content(); ?>
-                    <a target="_blank" class="event-button" href="<?php echo get_post_meta(get_the_ID(), 'hipsy_events_link', true); ?>">Get tickets</a>
+                    <a target="_blank" class="event-button" href="<?php echo $url; ?>">Get tickets</a>
                     <a style="margin-top:20px; display:block;" href="<?php echo home_url(); ?>/events">← back to all events</a>
                 </div>
                 <div class="ticket-content-wrapper event-content-wrapper">
@@ -69,7 +78,7 @@ $dark_mode = $value === "1" ? 'dark' : '';
                             }
                             ?>
                         </div>
-                        <a target="_blank" class="event-button" href="<?php echo get_post_meta(get_the_ID(), 'hipsy_events_link', true); ?>">Get tickets</a>
+                        <a target="_blank" class="event-button" href="<?php echo $url; ?>">Get tickets</a>
                         <!-- Surround with a tag linking to hipsy.nl -->
 
                         <a class="hipsy-logo" href="<?php echo home_url(); ?>/events">

@@ -70,7 +70,7 @@ function hipsy_events_button_link_field_cb()
 
     echo '<select name="hipsy_events_button_link" id="hipsy_events_button_link">';
     echo '<option value="event" ' . selected($value, 'event') . '>Event page</option>';
-    echo '<option value="ticket" ' . selected($value, 'ticket') . '>Ticketshop</option>';
+    echo '<option value="shop" ' . selected($value, 'ticket') . '>Ticketshop</option>';
     echo '<option value="popup" disabled ' . selected($value, 'popup') . '>Popup</option>';
     echo '</select>';
 }

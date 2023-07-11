@@ -23,9 +23,14 @@ function hipsy_events_settings_page()
                 <tr>
                     <th scope="row"><?php esc_html_e('Organisation Slug', 'hipsy-events'); ?></th>
                     <td>
-                        <?php $value = get_option('hipsy_events_organisation_slug'); ?>
-                        <input required type="text" style="width:100%;" id="hipsy_events_organisation_slug" name="hipsy_events_organisation_slug" value="<?php echo esc_attr($value); ?>" />
-                        <p class="description"><?php esc_html_e('Enter the slug for your organisation, e.g. "my-organisation".', 'hipsy-events'); ?></p>
+                        <select name="hipsy_events_organisation_slug" id="hipsy_events_organisation_slug">
+                            <option value="event" <?php selected($value, 'event'); ?>>Event page</option>
+                            <option value="shop" <?php selected($value, 'shop'); ?>>Ticketshop</option>
+                            <option value="popup" disabled <?php selected($value, 'popup'); ?>>Popup</option>
+                        </select>
+<!--                        --><?php //$value = get_option('hipsy_events_organisation_slug'); ?>
+<!--                        <input required type="text" style="width:100%;" id="hipsy_events_organisation_slug" name="hipsy_events_organisation_slug" value="--><?php //echo esc_attr($value); ?><!--" />-->
+<!--                        <p class="description">--><?php //esc_html_e('Enter the slug for your organisation, e.g. "my-organisation".', 'hipsy-events'); ?><!--</p>-->
                     </td>
                 </tr>
                 <tr>
@@ -34,7 +39,7 @@ function hipsy_events_settings_page()
                         <?php $value = get_option('hipsy_events_button_link'); ?>
                         <select name="hipsy_events_button_link" id="hipsy_events_button_link">
                             <option value="event" <?php selected($value, 'event'); ?>>Event page</option>
-                            <option value="ticket" <?php selected($value, 'ticket'); ?>>Ticketshop</option>
+                            <option value="shop" <?php selected($value, 'shop'); ?>>Ticketshop</option>
                             <option value="popup" disabled <?php selected($value, 'popup'); ?>>Popup</option>
                         </select>
                         <p class="description"><?php esc_html_e('Where should the ticket button link to?', 'hipsy-events'); ?></p>

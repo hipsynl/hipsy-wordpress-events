@@ -24,7 +24,7 @@ function hipsy_events_reactivation_check()
             'post_name'    => 'events',
             'post_status'  => 'publish',
             'post_type'    => 'page',
-            'post_content' => '<!-- wp:plugin/events-block {"numberOfPosts":"15","eventList":[]} /-->'
+            'post_content' => '<!-- wp:plugin/events-block {"numberOfPosts":"99","eventList":[]} /-->'
         );
 
         wp_insert_post($events_page);

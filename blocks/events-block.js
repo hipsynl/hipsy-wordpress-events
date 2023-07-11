@@ -15,7 +15,7 @@
         attributes: {
             numberOfPosts: {
                 type: 'text',
-                default: '5',
+                default: '99',
             },
             eventList: {
                 type: 'array',

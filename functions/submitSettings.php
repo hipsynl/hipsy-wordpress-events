@@ -38,7 +38,6 @@ function submit_hipsy_events_options()
 
     if (isset($_POST['hipsy_events_organisation_slug']) && isset($_POST['hipsy_events_api_key']) && $_POST['hipsy_events_organisation_slug'] && $_POST['hipsy_events_api_key']) {
         $events = get_hipsy_events($_POST["hipsy_events_api_key"], $_POST['hipsy_events_organisation_slug']);
-        print_r("test");
         if(isset($events["message"])) {
             add_settings_error('hipsy_events_organisation_slug', 'hipsy_events_organisation_slug_error', __('Failed to sync events', 'hipsy-events'));
             return;

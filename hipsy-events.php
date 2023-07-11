@@ -24,3 +24,5 @@ include("functions/customTemplates.php");
 include("functions/adminColumns.php");
 include("functions/restApiSorting.php");
 include("functions/blockGutenberg.php");
+include("functions/cronJob.php");
+

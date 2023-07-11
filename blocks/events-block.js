@@ -104,10 +104,7 @@
                 el(
                     'p',
                     { class: 'has-text-align-center' },
-                    'Events automatically synced with Hipsy.',
-                    el('br', null),
-                    'Also an event organiser? ',
-                    el('a', { href: 'https://hipsy.nl' }, 'Download the free plugin here')
+                    'Events synced with Hipsy',
                   )
             );
         },

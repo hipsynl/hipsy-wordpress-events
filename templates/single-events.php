@@ -5,7 +5,7 @@ $dark_mode = $value === "1" ? 'dark' : '';
 ?>
 <div class="single-event-wrapper <?php echo $dark_mode ?>">
     <?php
-    function ticket($name, $price, $description)
+    function ticket($name, $price, $description, $servicecosts)
     {
         return <<<EOT
         <div class="ticket">
@@ -15,7 +15,7 @@ $dark_mode = $value === "1" ? 'dark' : '';
             </div>
             <div class="ticket-price-wrapper">
                 <div class="ticket-price">{$price}</div>
-                <div class="ticket-description">includes servicecosts</div>
+                <div class="ticket-description">{$servicecosts}</div>
             </div>
         </div>
     EOT;
@@ -57,13 +57,14 @@ $dark_mode = $value === "1" ? 'dark' : '';
                     <p class="event-date"><?php echo "{$formatted_date} at {$formatted_time} - {$formatted_time_end}" ?></p>
                     <h2 class="event-title"><?php the_title(); ?></h2>
                     <div class="event-location">Location: <?php echo get_post_meta(get_the_ID(), 'hipsy_events_location', true); ?></div>
+                    <a target="_blank" class="event-button event-button-mobile" href="<?php echo $url; ?>">Get tickets</a>
+
                 </div>
                 <?php the_post_thumbnail('large', array('class' => 'event-image')); ?>
             </div>
             <div class="event-single-main">
                 <div class="event-content-wrapper">
                     <?php the_content(); ?>
-                    <a target="_blank" class="event-button" href="<?php echo $url; ?>">Get tickets</a>
                     <a style="margin-top:20px; display:block;" href="<?php echo home_url(); ?>/events">← back to all events</a>
                 </div>
                 <div class="ticket-content-wrapper event-content-wrapper">
@@ -73,7 +74,8 @@ $dark_mode = $value === "1" ? 'dark' : '';
                             <?php
                             foreach ($tickets as $ticket) {
                                 $price = '€ ' . number_format($ticket['price'], 2, ',', '.');
-                                $output = ticket($ticket['name'], $price, $ticket['description']);
+                                $servicecosts = $ticket['price'] > 0 ? 'incl. service costs' : '';
+                                $output = ticket($ticket['name'], $price, $ticket['description'], $servicecosts);
                                 echo $output;
                             }
                             ?>
@@ -81,14 +83,14 @@ $dark_mode = $value === "1" ? 'dark' : '';
                         <a target="_blank" class="event-button" href="<?php echo $url; ?>">Get tickets</a>
                         <!-- Surround with a tag linking to hipsy.nl -->
 
-                        <a class="hipsy-logo" href="<?php echo home_url(); ?>/events">
-                            <span>Powered by </span>
+                        <div class="hipsy-logo">
+                            <span>Synced with&nbsp;</span>
                             <?php if ($dark_mode === 'dark') { ?>
                                 <img src="<?php echo plugins_url('hipsy-events/img/hipsy_white.png'); ?>" alt="Hipsy logo">
                             <?php } else { ?>
                                 <img src="<?php echo plugins_url('hipsy-events/img/hipsy_small.png'); ?>" alt="Hipsy logo">
                             <?php } ?>
-                        </a>
+                        </div>
                     </div>
                 </div>
             </div>

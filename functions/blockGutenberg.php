@@ -64,7 +64,7 @@ function render_events_block($attributes)
     wp_reset_postdata();
     $output .= loop_wrapper_end();
 
-    $output .= '<p class="has-text-align-center">Events automatically synced with Hipsy.<br>Also an event organiser? <a href="https://hipsy.nl">Download the free plugin here</a></p>';
+    $output .= '<p class="has-text-align-center">Events synced with Hipsy</p>';
 
     return $output;
 }

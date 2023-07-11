@@ -36,12 +36,13 @@ function submit_hipsy_events_options()
         update_option('hipsy_events_dark_mode', 0);
     }
 
-    if (
-        isset($_POST['custom_button'])
-        && $_POST['hipsy_events_organisation_slug']
-        && $_POST['hipsy_events_api_key']
-    ) {
+    if (isset($_POST['hipsy_events_organisation_slug']) && isset($_POST['hipsy_events_api_key']) && $_POST['hipsy_events_organisation_slug'] && $_POST['hipsy_events_api_key']) {
         $events = get_hipsy_events($_POST["hipsy_events_api_key"], $_POST['hipsy_events_organisation_slug']);
+        print_r("test");
+        if(isset($events["message"])) {
+            add_settings_error('hipsy_events_organisation_slug', 'hipsy_events_organisation_slug_error', __('Failed to sync events', 'hipsy-events'));
+            return;
+        }
         foreach ($events as $event) {
             createEvent($event);
         }

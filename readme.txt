@@ -1,6 +1,6 @@
 === Hipsy Events ===
 
-Contributors: howaboutyes
+Contributors: hipsy,howaboutyes
 Donate link: https://hipsy.nl
 Tags: events, tickets
 

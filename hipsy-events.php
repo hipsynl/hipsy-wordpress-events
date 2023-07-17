@@ -1,11 +1,20 @@
 <?php
-/*
-Plugin Name: Hipsy Events
-Description: Fetches and displays a list of events from the Hipsy API.
-Version: 1.0
-Author: How About Yes
-*/
 
+/**
+ * Hipsy Events
+ *
+ * @package       HIPSY
+ * @author        How About Yes
+ *
+ * @wordpress-plugin
+ * Plugin Name:   Hipsy Events
+ * Plugin URI:    https://hipsy.nl
+ * Description:   Sync Hipsy events from your Hipsy organiser account with your Wordpress website, and let people find your events and sell tickets.
+ * Version:       1.0.0
+ * Author:        How About Yes
+ * Author URI:    https://howaboutyes.com
+ * Text Domain:   hipsy-events
+ */
 
 
 include("templates/loopItem.php");
@@ -25,4 +34,3 @@ include("functions/adminColumns.php");
 include("functions/restApiSorting.php");
 include("functions/blockGutenberg.php");
 include("functions/cronJob.php");
-

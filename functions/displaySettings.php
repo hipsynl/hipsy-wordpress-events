@@ -4,11 +4,6 @@ function hipsy_events_settings_page()
     if (isset($_POST['hipsy_events_api_key'])) {
         submit_hipsy_events_options();
     }
-
-    function get_organisations(){
-        $result = get_hipsy_organisations("12850|ReFdsmbmp9cbFiQoFId8uUtNMMU8Fv8e3X4SQtox");
-    }
-//    $organisations = get_organisations();
 ?>
     <div class="wrap" style="max-width:700px;">
         <h1><?php esc_html_e('Hipsy Events Settings', 'hipsy-events'); ?></h1>
@@ -25,28 +20,26 @@ function hipsy_events_settings_page()
                         <p><a href="https://hipsy.nl/app/api-keys" target="_blank" class="description"><?php esc_html_e('Generate an API key here', 'hipsy-events'); ?></a>.</p>
                     </td>
                 </tr>
-<!--                Display Organisation Slug select if $api_key is set -->
-                <?php if($api_key){ ?>
+                <?php if ($api_key) { ?>
                     <?php
                     $organisations = get_hipsy_organisations($api_key);
-                    if(isset($organisations["message"])){
+                    if (isset($organisations["message"])) {
                         add_settings_error('hipsy_events_api_key', 'hipsy_events_api_key_error', __('Invalid API key. Please correct it', 'hipsy-events'));
                         update_option('hipsy_events_organisation_slug', "");
-                    }
-                    else{ ?>
+                    } else { ?>
                         <tr>
                             <th scope="row"><?php esc_html_e('Organisation', 'hipsy-events'); ?></th>
                             <td>
                                 <?php $org_slug = get_option('hipsy_events_organisation_slug'); ?>
-                                    <select name="hipsy_events_organisation_slug" id="hipsy_events_organisation_slug">
-                                        <option disabled selected value> -- select an organisation -- </option>
-                                        <?php foreach ($organisations as $organisation) { ?>
-                                            <option value="<?php echo $organisation["slug"]; ?>" <?php selected($org_slug, $organisation["slug"]) ?> ><?php echo $organisation["name"]; ?></option>
-                                        <?php } ?>
-                                    </select>
+                                <select name="hipsy_events_organisation_slug" id="hipsy_events_organisation_slug">
+                                    <option disabled selected value> -- select an organisation -- </option>
+                                    <?php foreach ($organisations as $organisation) { ?>
+                                        <option value="<?php echo $organisation["slug"]; ?>" <?php selected($org_slug, $organisation["slug"]) ?>><?php echo $organisation["name"]; ?></option>
+                                    <?php } ?>
+                                </select>
                             </td>
                         </tr>
-                        <?php if($org_slug){ ?>
+                        <?php if ($org_slug) { ?>
                             <tr>
                                 <th scope="row"><?php esc_html_e('Button Link', 'hipsy-events'); ?></th>
                                 <td>
@@ -60,7 +53,6 @@ function hipsy_events_settings_page()
                                 </td>
                             </tr>
                             <tr>
-                                <!-- Create a toggle button for dark and light mode -->
                                 <th scope="row"><?php esc_html_e('Dark Mode', 'hipsy-events'); ?></th>
                                 <td class="hipsy-toggle">
                                     <?php $value = get_option('hipsy_events_dark_mode'); ?>
@@ -70,7 +62,7 @@ function hipsy_events_settings_page()
                                     <p class="description"><?php esc_html_e('Enable dark styling for events and widgets.', 'hipsy-events'); ?></p>
                                 </td>
                             </tr>
-                            <?php } ?>
+                        <?php } ?>
 
 
                     <?php } ?>
@@ -81,17 +73,18 @@ function hipsy_events_settings_page()
 ">
                 <?php settings_errors(); ?>
                 <?php $button_text = "Save Settings";
-                if(!$api_key) $button_text = "Verify API key"; ?>
+                if (!$api_key) $button_text = "Verify API key"; ?>
                 <p class="submit"><button type="submit" name="custom_button" class="button button-primary"><?php _e($button_text, 'hipsy-events'); ?></button></p>
 
             </div>
         </form>
     </div>
     <style>
-        .form-table td.hipsy-toggle{
-            padding-top:0;
+        .form-table td.hipsy-toggle {
+            padding-top: 0;
         }
-        .hipsy-toggle input[type=checkbox]{
+
+        .hipsy-toggle input[type=checkbox] {
             height: 0;
             width: 0;
             visibility: hidden;
@@ -120,11 +113,11 @@ function hipsy_events_settings_page()
             transition: 0.4s;
         }
 
-        .hipsy-toggle input:checked + label {
+        .hipsy-toggle input:checked+label {
             background: #1a5e58;
         }
 
-        .hipsy-toggle input:checked + label:after {
+        .hipsy-toggle input:checked+label:after {
             left: calc(100% - 3px);
             transform: translateX(-100%);
         }
@@ -132,7 +125,6 @@ function hipsy_events_settings_page()
         .hipsy-toggle label:active:after {
             width: 40px;
         }
-
     </style>
 <?php
 }

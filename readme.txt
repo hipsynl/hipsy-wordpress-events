@@ -43,7 +43,7 @@ Discover the convenience of effortless event synchronization today. Install the 
 
 == Installation ==
 This section describes how to install the plugin and get it working.
-1. Upload [`hipsy-events`](https://github.com/hipsy/wp-hipsy-events/hipsy-events.zip) to the `/wp-content/plugins/` directory
+1. Upload [`hipsy-events`](https://github.com/sefrijn/hipsy-wordpress-events/archive/refs/heads/main.zip) to the `/wp-content/plugins/` directory
 2. Activate the plugin through the 'Plugins' menu in WordPress
 
 == Frequently Asked Questions ==

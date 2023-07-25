@@ -25,11 +25,13 @@ Discover the convenience of effortless event synchronization today. Install the 
 
 
 
-
 # Installation
-This section describes how to install the plugin and get it working.
-1. Upload [`hipsy-events`](https://github.com/sefrijn/hipsy-wordpress-events/archive/refs/heads/main.zip) to the `/wp-content/plugins/` directory
-2. Activate the plugin through the 'Plugins' menu in WordPress
+This section describes how to install the plugin and get it working:
+1. [`Download the plugin here`](https://github.com/hipsynl/hipsy-wordpress-events/archive/refs/heads/main.zip)
+2. Login as administrator on your own Wordpress website
+3. Navigate to *Plugins*, click *Add New* and then click *Upload Plugin* at the top of the page
+4. Select and upload the .zip file you downloaded at step 1
+5. Activate the plugin through the Plugins overview page
 
 # Frequently Asked Questions
 = What is an API key? =

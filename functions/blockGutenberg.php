@@ -9,6 +9,7 @@ function register_events_block()
 
     register_block_type('plugin/events-block', array(
         'editor_script' => 'events-block-script',
+        'render_callback' => 'render_events_block',
     ));
 }
 add_action('init', 'register_events_block');
@@ -68,6 +69,3 @@ function render_events_block($attributes)
 
     return $output;
 }
-register_block_type('plugin/events-block', array(
-    'render_callback' => 'render_events_block',
-));

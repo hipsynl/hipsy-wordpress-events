@@ -34,6 +34,19 @@ This section describes how to install the plugin and get it working:
 5. Activate the plugin through the Plugins overview page
 
 # Frequently Asked Questions
-= What is an API key? =
 
-To make the synchronization process secure and convenient, the Hipsy Events Plugin utilizes an API key. An API key acts as a unique identifier that grants your WordPress website permission to access and interact with Hipsy's robust event and ticketing infrastructure. This secure integration ensures that your data remains protected while enabling seamless communication between platforms. You can [generate your API key here](https://hipsy.nl/app/api-keys).
+### Q: What is an API key?
+
+A: To make the synchronization process secure and convenient, the Hipsy Events Plugin utilizes an API key. An API key acts as a unique identifier that grants your WordPress website permission to access and interact with Hipsy's robust event and ticketing infrastructure. This secure integration ensures that your data remains protected while enabling seamless communication between platforms. You can [generate your API key here](https://hipsy.nl/app/api-keys).
+
+### Q: What kind of support do you offer for the plugin?
+
+A: We offer limited support for the plugin as it is provided free of charge. While we are committed to assisting our users, it's important to note that our resources are constrained, and we may not be able to address all individual queries promptly.
+
+### Q: Where can I get help if I encounter issues with the plugin?
+
+A: If you encounter any issues or have questions about the plugin, we encourage you to open an [issue on our GitHub repository](https://github.com/hipsynl/hipsy-wordpress-events/issues). This platform allows you to seek help from the broader community, including experienced users and developers who can share their insights and expertise. Please ensure you have a GitHub account to post your questions or contribute to existing discussions.
+
+Leveraging the collaborative nature of GitHub, we aim to create an open and supportive environment where users can assist each other, and our team can efficiently address reported issues.
+
+We appreciate your understanding and cooperation as we continue to improve and support the plugin, making it a valuable resource for all users within our community.

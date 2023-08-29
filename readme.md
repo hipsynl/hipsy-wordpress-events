@@ -48,6 +48,14 @@ You are free to remove this link from your menu. Second option is to add the eve
 
 It is possible to manually add events to your Wordpress website which you didn't published on Hipsy. Click on the `Add event` menu (under Hipsy events) to add a new event only to your  Wordpress website.
 
+### Wordpress shortcode
+
+You can also use legacy Wordpress shortcodes for older Wordpress templates with widget support. Or, you can use shortcodes inside a Gutenberg Shortcode block. Use the following shortcode:
+```
+[hipsy_events limit=10]
+```
+You can change `limit` into any number you wish to set the amount of events to display. You can also remove the limit parameter and just use `[hipsy_events]`.
+
 
 # Frequently Asked Questions
 

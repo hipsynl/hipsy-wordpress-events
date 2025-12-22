@@ -14,11 +14,11 @@ function createEvent($event)
 
 
     $post_arr = array(
-        'post_title'   => $event['title'],
-        'post_type'    => 'events',
+        'post_title' => $event['title'],
+        'post_type' => 'events',
         'post_content' => $event['description'],
-        'post_status'  => 'publish',
-        'meta_input'   => array(
+        'post_status' => 'publish',
+        'meta_input' => array(
             'hipsy_events_location' => $event['location'],
             'hipsy_events_date' => $formatted_date,
             'hipsy_events_date_end' => $formatted_date_until,
@@ -29,20 +29,43 @@ function createEvent($event)
     if (get_post($event['id'])) {
         $post_arr['ID'] = $event['id'];
         wp_update_post($post_arr);
-        return;
+        $post_id = $event['id'];
+    } else {
+        $post_arr['import_id'] = $event['id'];
+        $post_id = wp_insert_post($post_arr);
     }
-    $post_arr['import_id'] = $event['id'];
 
-    $post = wp_insert_post($post_arr);
-    $image = add_external_image_to_media_library($event['picture']);
-    set_post_thumbnail($post, $image);
+    $image = add_external_image_to_media_library($event['picture'], $event['id']);
+    set_post_thumbnail($post_id, $image);
 }
 
-function add_external_image_to_media_library($image_url)
+function add_external_image_to_media_library($image_url, $post_id)
 {
     $upload_dir = wp_upload_dir();
     $image_data = file_get_contents($image_url);
-    $filename = basename($image_url);
+    $filename = basename(strtok($image_url, '?'));
+
+    // Check if file already exists in media library to avoid duplicates
+    $existing_attachment = get_posts(array(
+        'post_type' => 'attachment',
+        'posts_per_page' => 1,
+        'meta_query' => array(
+            array(
+                'key' => '_wp_attached_file',
+                'value' => $filename,
+                'compare' => 'LIKE'
+            )
+        )
+    ));
+
+    if ($existing_attachment) {
+        $att_id = $existing_attachment[0]->ID;
+        $file_path = get_attached_file($att_id);
+        if (file_exists($file_path)) {
+            return $att_id;
+        }
+    }
+
     if (strpos($filename, '.png') !== false) {
         $filetype = 'image/png';
     } elseif (strpos($filename, '.jpg') !== false || strpos($filename, '.jpeg') !== false) {

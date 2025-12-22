@@ -44,9 +44,15 @@ function render_events_block($attributes)
     if ($events_query->have_posts()) {
         while ($events_query->have_posts()) {
             $events_query->the_post();
+            $link_type = get_option('hipsy_events_button_link');
             $link = get_post_meta(get_the_ID(), 'hipsy_events_link', true);
             $title = get_the_title();
-            $url = get_permalink();
+
+            if ($link_type === 'shop' && !empty($link)) {
+                $url = $link;
+            } else {
+                $url = get_permalink();
+            }
             $location = get_post_meta(get_the_ID(), 'hipsy_events_location', true);
             // Date
             $date_str = get_post_meta(get_the_ID(), 'hipsy_events_date', true);

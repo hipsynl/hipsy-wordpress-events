@@ -1,0 +1,19 @@
+meta {
+  name: List Organisations
+  type: http
+  seq: 1
+}
+
+get {
+  url: {{baseUrl}}/organisations/index
+  body: none
+  auth: bearer
+}
+
+headers {
+  Accept: application/json
+}
+
+auth:bearer {
+  token: {{apiKey}}
+}

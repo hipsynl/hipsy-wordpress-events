@@ -49,6 +49,7 @@ cp -r functions "$PLUGIN_SLUG/"
 cp -r templates "$PLUGIN_SLUG/"
 cp -r img "$PLUGIN_SLUG/"
 cp -r blocks "$PLUGIN_SLUG/"
+cp -r assets "$PLUGIN_SLUG/"
 
 # Copy Styles
 # We need to preserve the directory structure expected by the plugin:

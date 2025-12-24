@@ -1,5 +1,8 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 .hipsy-events-widget {
-  @apply flex items-center justify-center flex-col gap-10 sm:gap-6 my-4  max-w-prose mx-auto;
+  @apply flex items-center justify-center flex-col gap-10 sm:gap-6 my-4 max-w-prose mx-auto;
 }
 .hipsy-events-widget .event {
   @apply no-underline;
@@ -9,7 +12,7 @@
   @apply flex flex-col gap-x-3 w-full items-center sm:flex-row rounded-md overflow-clip shadow-md text-inherit bg-black/5 dark:bg-gray-500/5 transition-colors;
 }
 .event .event-image-wrapper {
-  @apply w-full sm:w-56 h-auto sm:aspect-video shrink-0 overflow-clip rounded-md;
+  @apply w-full sm:w-56 h-auto shrink-0 overflow-clip rounded-md;
 }
 .event .event-image {
   @apply w-full h-full object-cover transition-all block;
@@ -27,10 +30,13 @@
   @apply my-0 py-0;
 }
 .event .event-info .event-date {
-  @apply opacity-60 text-sm uppercase tracking-widest font-bold;
+  @apply font-bold text-black mb-2 text-base;
 }
 .event .event-info .event-title {
-  @apply text-xl leading-none line-clamp-2 sm:line-clamp-1;
+  @apply font-bold text-xl leading-tight mb-1 line-clamp-2 sm:line-clamp-1;
+}
+.event .event-info .event-description {
+  @apply text-sm text-gray-700 leading-relaxed line-clamp-3;
 }
 .event .event-info .event-location {
   @apply opacity-60 line-clamp-1 text-sm overflow-ellipsis;

@@ -70,3 +70,37 @@ A: We offer limited support for the plugin as it is provided free of charge. Whi
 ### Q: Where can I get help if I encounter issues with the plugin?
 
 A: If you encounter any issues or have questions about the plugin, we encourage you to open an [issue on our GitHub repository](https://github.com/hipsynl/hipsy-wordpress-events/issues). This platform allows you to seek help from the broader community, including experienced users and developers who can share their insights and expertise.
+
+# Development
+
+If you want to contribute to the development of this plugin or build it from source, follow these steps.
+
+## Building the Plugin
+
+To create a distributable `.zip` file of the plugin, you can use the provided build script. This script will install dependencies, compile assets (Sass/Tailwind), and package the necessary files.
+
+### Prerequisites
+
+- **Node.js**: Ensure you have Node.js installed.
+- **Yarn** or **npm**: The script will try to use `yarn` first, then fall back to `npm`.
+- **Zip**: A command-line zip utility (usually available by default on macOS and Linux).
+
+### Running the Build Script
+
+Open your terminal in the project root and run:
+
+```bash
+chmod +x build_zip.sh # Ensure the script is executable
+./build_zip.sh
+```
+
+### What the Script Does
+
+1.  **Installs Dependencies**: Runs `yarn install` or `npm install`.
+2.  **Builds Assets**:
+    *   Compiles Sass using Laravel Mix.
+    *   Minifies Tailwind CSS.
+3.  **Packages**: Creates a temporary directory, copies all necessary files (PHP files, blocks, templates, images, compiled styles), and removes unnecessary development files (like node_modules).
+4.  **Zips**: Archives the plugin into `hipsy-events.zip`.
+
+You can then proceed to install `hipsy-events.zip` on your WordPress site as described in the **Installation** section.

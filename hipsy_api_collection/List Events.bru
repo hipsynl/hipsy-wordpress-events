@@ -1,0 +1,19 @@
+meta {
+  name: List Events
+  type: http
+  seq: 2
+}
+
+get {
+  url: {{baseUrl}}/organisation/{{organisationSlug}}/events
+  body: none
+  auth: bearer
+}
+
+headers {
+  Accept: application/json
+}
+
+auth:bearer {
+  token: {{apiKey}}
+}

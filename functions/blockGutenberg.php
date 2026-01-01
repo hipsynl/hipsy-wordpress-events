@@ -44,28 +44,44 @@ function render_events_block($attributes)
     if ($events_query->have_posts()) {
         while ($events_query->have_posts()) {
             $events_query->the_post();
+            $link_type = get_option('hipsy_events_button_link');
             $link = get_post_meta(get_the_ID(), 'hipsy_events_link', true);
             $title = get_the_title();
-            $url = get_permalink();
+
+            if ($link_type === 'shop' && !empty($link)) {
+                $url = $link;
+            } else {
+                $url = get_permalink();
+            }
             $location = get_post_meta(get_the_ID(), 'hipsy_events_location', true);
             // Date
             $date_str = get_post_meta(get_the_ID(), 'hipsy_events_date', true);
             $date = new DateTime($date_str);
-            $formatted_date = $date->format('F j');
-            $formatted_time = $date->format('H:i');
             $date_str2 = get_post_meta(get_the_ID(), 'hipsy_events_date_end', true);
             $date_end = new DateTime($date_str2);
             $formatted_time_end = $date_end->format('H:i');
 
-            $thumbnail = get_the_post_thumbnail(get_the_ID(), 'medium', array('class' => 'event-image'));
+            // Format: Wo. 11 feb. 2026 19:30 - 21:30
+            $formatted_date_string = date_i18n('D. j M. Y H:i', $date->getTimestamp()) . ' - ' . $formatted_time_end;
 
-            $output .= loop_item($url, $thumbnail, $formatted_date, $formatted_time, $formatted_time_end, $title, $location);
+            $thumbnail = get_the_post_thumbnail(get_the_ID(), 'medium', array('class' => 'event-image w-full h-full object-cover'));
+            $description = wp_trim_words(get_the_content(), 25, '...');
+
+            $output .= loop_item($url, $thumbnail, $formatted_date_string, $title, $description);
         }
     }
     wp_reset_postdata();
     $output .= loop_wrapper_end();
 
-    $output .= '<p class="has-text-align-center">Events synced with Hipsy</p>';
+    // Check if there are more post to load
+    $total_posts = $events_query->found_posts;
+    $posts_displayed = $events_query->post_count;
+
+    if ($total_posts > $posts_displayed) {
+        $output .= '<div class="hipsy-load-more-container" style="text-align: center; margin-top: 20px;">
+            <button class="hipsy-load-more button" data-offset="' . esc_attr($posts_displayed) . '" data-limit="10">Load more</button>
+        </div>';
+    }
 
     return $output;
 }

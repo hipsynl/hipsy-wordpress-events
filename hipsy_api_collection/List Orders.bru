@@ -1,0 +1,19 @@
+meta {
+  name: List Orders
+  type: http
+  seq: 6
+}
+
+get {
+  url: {{baseUrl}}/organisation/{{organisationSlug}}/orders
+  body: none
+  auth: bearer
+}
+
+headers {
+  Accept: application/json
+}
+
+auth:bearer {
+  token: {{apiKey}}
+}

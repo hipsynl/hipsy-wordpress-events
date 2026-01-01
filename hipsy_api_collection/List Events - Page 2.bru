@@ -1,0 +1,23 @@
+meta {
+  name: List Events - Page 2
+  type: http
+  seq: 5
+}
+
+get {
+  url: {{baseUrl}}/organisation/{{organisationSlug}}/events
+  body: none
+  auth: bearer
+}
+
+params:query {
+  page: 2
+}
+
+headers {
+  Accept: application/json
+}
+
+auth:bearer {
+  token: {{apiKey}}
+}

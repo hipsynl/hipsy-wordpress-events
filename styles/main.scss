@@ -1,10 +1,15 @@
 // This file is using Tailwind CSS in order to keep the styles as minimal as possible.
 // For more info, visit https://tailwindcss.com/docs
 
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 // Events wrapper
 .hipsy-events-widget {
-  @apply flex items-center justify-center flex-col gap-10 sm:gap-6 my-4  max-w-prose mx-auto;
-  .event{
+  @apply flex items-center justify-center flex-col gap-10 sm:gap-6 my-4 max-w-prose mx-auto;
+
+  .event {
     @apply no-underline;
   }
 }
@@ -12,39 +17,48 @@
 // Event card
 .event {
   @apply flex flex-col gap-x-3 w-full items-center sm:flex-row rounded-md overflow-clip shadow-md text-inherit bg-black/5 dark:bg-gray-500/5 transition-colors;
-  
-  
+
+
   // Event image
-  .event-image-wrapper{
-    @apply w-full sm:w-56 h-auto sm:aspect-video shrink-0 overflow-clip rounded-md;
+  .event-image-wrapper {
+    @apply w-full sm:w-56 h-auto shrink-0 overflow-clip rounded-md;
 
   }
+
   .event-image {
     @apply w-full h-full object-cover transition-all block;
   }
+
   &:hover {
     @apply cursor-pointer bg-gray-500/5 dark:bg-gray-400/5;
+
     .event-image {
       scale: 1.05;
     }
   }
+
   // Event info
   .event-info {
     @apply text-left items-start flex flex-col gap-2 p-4;
 
     // Remove possible default list styles from the theme
-    > * {
+    >* {
       @apply my-0 py-0;
     }
 
     // Event date
-    .event-date{
-      @apply opacity-60 text-sm uppercase tracking-widest font-bold;
+    .event-date {
+      @apply font-bold text-black mb-2 text-base;
     }
 
     // Event title
     .event-title {
-      @apply text-xl leading-none line-clamp-2 sm:line-clamp-1;
+      @apply font-bold text-xl leading-tight mb-1 line-clamp-2 sm:line-clamp-1;
+    }
+
+    // Event description
+    .event-description {
+      @apply text-sm text-gray-700 leading-relaxed line-clamp-3;
     }
 
     // Event location
@@ -52,86 +66,100 @@
       @apply opacity-60 line-clamp-1 text-sm overflow-ellipsis;
     }
   }
-}  
+}
 
 
 
-  .event-single-header{
-    @apply grid md:grid-cols-2 bg-black/5 dark:bg-gray-500/5 shadow-md;
-    .event-image{
-      @apply object-cover md:order-2 order-1 md:-mb-6 md:rounded-b-lg;
-    }
-  
-    .event-info{
-      @apply lg:px-8 md:px-6 px-4 py-6 md:py-4 flex flex-col justify-center lg:gap-2 md:gap-0 gap-2 md:order-1 order-2;
-  
-      // Remove possible default list styles from the theme
-      * {
-        @apply my-0;
-      }
-      h2{
-        @apply leading-tight;
-      }
-      .event-date{
-        @apply text-slate-400 uppercase tracking-widest font-bold;
-      }
-      .event-location{
-        @apply text-slate-400 line-clamp-2 text-sm lg:text-base;
-      }
-    }
-  
-  }  
-  .event-single-main{
-    @apply grid grid-cols-1 lg:grid-cols-2 md:gap-8 relative;
+.event-single-header {
+  @apply grid md:grid-cols-2 bg-black/5 dark:bg-gray-500/5 shadow-md;
 
-    .event-content-wrapper{
-      @apply lg:py-16 py-4 px-4 md:px-6 lg:px-8;
-    }
-    
-    
-    .ticket-content-wrapper{
-      @apply md:sticky top-6 self-start text-black dark:text-white;
-      .ticket-content {
-        @apply p-5 bg-hipsy_teal dark:bg-hipsy_dark rounded-md relative;
-        .ticket-list{
-          @apply flex flex-col gap-5 mb-5;
-        }
-      }
-      .ticket{
-        @apply grid grid-cols-3 gap-10;
-        .ticket-description{
-          @apply text-xs opacity-70;
-        }
-        .ticket-info{
-          @apply col-span-2;
-        }
-        .ticket-price-wrapper{
-          .ticket-price{
-            @apply text-lg;
-          }
-        }
-      }
-      .hipsy-logo{
-        @apply absolute bottom-5 right-5 text-black dark:text-white flex text-xs items-center;
-        img{
-          @apply w-16 h-auto object-contain;
-        }
-      }
-    
-    }
-    
-
-
+  .event-image {
+    @apply object-cover md:order-2 order-1 md:-mb-6 md:rounded-b-lg;
   }
 
-  .go-back{
-    @apply hover:opacity-90 text-sm;
+  .event-info {
+    @apply lg:px-8 md:px-6 px-4 py-6 md:py-4 flex flex-col justify-center lg:gap-2 md:gap-0 gap-2 md:order-1 order-2;
+
+    // Remove possible default list styles from the theme
+    * {
+      @apply my-0;
+    }
+
+    h2 {
+      @apply leading-tight;
+    }
+
+    .event-date {
+      @apply text-slate-400 uppercase tracking-widest font-bold;
+    }
+
+    .event-location {
+      @apply text-slate-400 line-clamp-2 text-sm lg:text-base;
+    }
+  }
+
+}
+
+.event-single-main {
+  @apply grid grid-cols-1 lg:grid-cols-2 md:gap-8 relative;
+
+  .event-content-wrapper {
+    @apply lg:py-16 py-4 px-4 md:px-6 lg:px-8;
   }
 
 
-.event-button{
+  .ticket-content-wrapper {
+    @apply md:sticky top-6 self-start text-black dark:text-white;
+
+    .ticket-content {
+      @apply p-5 bg-hipsy_teal dark:bg-hipsy_dark rounded-md relative;
+
+      .ticket-list {
+        @apply flex flex-col gap-5 mb-5;
+      }
+    }
+
+    .ticket {
+      @apply grid grid-cols-3 gap-10;
+
+      .ticket-description {
+        @apply text-xs opacity-70;
+      }
+
+      .ticket-info {
+        @apply col-span-2;
+      }
+
+      .ticket-price-wrapper {
+        .ticket-price {
+          @apply text-lg;
+        }
+      }
+    }
+
+    .hipsy-logo {
+      @apply absolute bottom-5 right-5 text-black dark:text-white flex text-xs items-center;
+
+      img {
+        @apply w-16 h-auto object-contain;
+      }
+    }
+
+  }
+
+
+
+}
+
+.go-back {
+  @apply hover:opacity-90 text-sm;
+}
+
+
+.event-button {
   @apply bg-green-600 hover:bg-green-500 text-white font-bold tracking-widest py-2 px-4 rounded-md cursor-pointer inline-block transition-colors self-start hover:text-white;
 }
-.event-button-mobile{
+
+.event-button-mobile {
   @apply md:hidden;
 }

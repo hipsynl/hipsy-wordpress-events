@@ -1,6 +1,6 @@
 {
   "name": "hipsy-events",
-  "version": "1.0.0",
+  "version": "1.2.0",
   "main": "index.js",
   "repository": "https://github.com/sefrijn/hipsy-wordpress-events.git",
   "author": "How About Yes <sefrijn@gmail.com>",

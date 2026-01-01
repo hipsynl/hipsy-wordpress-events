@@ -78,8 +78,9 @@ function render_events_block($attributes)
     $posts_displayed = $events_query->post_count;
 
     if ($total_posts > $posts_displayed) {
+        $load_more_limit = intval($attributes['numberOfPosts']);
         $output .= '<div class="hipsy-load-more-container" style="text-align: center; margin-top: 20px;">
-            <button class="hipsy-load-more button" data-offset="' . esc_attr($posts_displayed) . '" data-limit="10">Load more</button>
+            <button class="hipsy-load-more button" data-offset="' . esc_attr($posts_displayed) . '" data-limit="' . esc_attr($load_more_limit) . '">Load more</button>
         </div>';
     }
 

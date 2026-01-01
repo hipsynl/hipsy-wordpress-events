@@ -35,7 +35,7 @@ mkdir "$PLUGIN_SLUG"
 
 # Generate WordPress readme.txt from readme.md
 echo "🔄 Generating WordPress readme.txt..."
-./generate_wp_readme.sh
+./scripts/generate_wp_readme.sh
 
 # 4. Copy files
 echo "g Copying files..."

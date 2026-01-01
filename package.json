@@ -5,6 +5,10 @@
   "repository": "https://github.com/sefrijn/hipsy-wordpress-events.git",
   "author": "How About Yes <sefrijn@gmail.com>",
   "license": "MIT",
+  "wordpress": {
+    "testedUpTo": "6.9",
+    "requiresAtLeast": "6.0"
+  },
   "devDependencies": {
     "@tailwindcss/vite": "^4.1.18",
     "tailwindcss": "^4.1.18",
@@ -13,6 +17,6 @@
   "scripts": {
     "dev": "vite build --watch",
     "build:css": "vite build",
-    "build": "bash build_zip.sh"
+    "build": "bash scripts/build_zip.sh"
   }
 }

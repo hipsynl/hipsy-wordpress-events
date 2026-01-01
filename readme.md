@@ -123,8 +123,14 @@ To create a distributable `.zip` file of the plugin, you can use the provided bu
 Open your terminal in the project root and run:
 
 ```bash
-chmod +x build_zip.sh # Ensure the script is executable
-./build_zip.sh
+# Make scripts executable (only needed once)
+chmod +x scripts/build_zip.sh
+chmod +x scripts/generate_wp_readme.sh
+
+# Run the build script
+./scripts/build_zip.sh
+# or
+yarn build
 ```
 
 ### What the Script Does

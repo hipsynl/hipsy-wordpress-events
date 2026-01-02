@@ -5,9 +5,15 @@ meta {
 }
 
 get {
-  url: {{baseUrl}}/organisation/{{organisationSlug}}/events
+  url: {{baseUrl}}/organisation/{{organisationSlug}}/events?period=all&limit=5&page=1
   body: none
   auth: bearer
+}
+
+params:query {
+  period: all
+  limit: 5
+  page: 1
 }
 
 headers {

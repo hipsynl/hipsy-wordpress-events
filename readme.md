@@ -78,6 +78,12 @@ A: If you encounter any issues or have questions about the plugin, we encourage 
 
 If you want to contribute to the development of this plugin or build it from source, follow these steps.
 
+## Hipsy API collection
+
+The plugin uses the [Hipsy API](https://docs.hipsy.nl/api-reference/getting-started) to synchronize events from Hipsy to your WordPress website. 
+**The Hipsy API remains the source of truth.**
+
+For ease of use, we have a Bruno REST collection in the `hipsy_api_collection` directory. (keep in mind that it might go out of date when the official hispy api changes)
 ## Development Setup
 
 ### Docker Development Environment

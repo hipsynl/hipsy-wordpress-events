@@ -20,20 +20,22 @@ fi
 # 2. Build Assets
 echo "🎨 Building assets..."
 
-# Compile Sass (Laravel Mix)
-# Using npx to ensure we use the local package version
-echo "   - Running Laravel Mix (Sass compilation)..."
-npx mix
-
-# Compile Tailwind
-# Input comes from the output of Sass (styles/css/main.css)
-echo "   - Running Tailwind CSS (Minification)..."
-npx tailwindcss -i ./styles/css/main.css -o ./styles/dist/main.css --minify
+# Compile Assets (Vite)
+echo "   - Running Vite Build..."
+if command -v yarn &> /dev/null && [ -f "yarn.lock" ]; then
+    yarn build:css
+else
+    npm run build:css
+fi
 
 # 3. Create cleanup/temp directory
 echo "🧹 Preparing temporary directory..."
 rm -rf "$PLUGIN_SLUG" "$ZIP_NAME"
 mkdir "$PLUGIN_SLUG"
+
+# Generate WordPress readme.txt from readme.md
+echo "🔄 Generating WordPress readme.txt..."
+./scripts/generate_wp_readme.sh
 
 # 4. Copy files
 echo "g Copying files..."

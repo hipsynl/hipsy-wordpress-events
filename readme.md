@@ -1,4 +1,5 @@
 # Description
+
 **Introducing the Hipsy Events Plugin for Wordpress**
 
 The Hipsy Events Plugin is a tool that seamlessly synchronizes events created on Hipsy.nl, with your WordPress website. With just a few simple steps, you can effortlessly connect your Hipsy account to your WordPress site and your events on Hipsy.nl will be synchronized with your website.
@@ -11,12 +12,13 @@ The Hipsy Events Plugin is a tool that seamlessly synchronizes events created on
 
 3. **Effortless updates**: Make changes to your events on Hipsy.nl, and rest assured that those updates will be automatically reflected on your WordPress website. Whether it's modifying event details, ticket prices, or availability, the plugin ensures that your website is always up-to-date with the latest information.
 
-
 # Installation
+
 This section describes how to install the plugin and get it working:
-1. [`Download the plugin here`](https://github.com/hipsynl/hipsy-wordpress-events/releases/download/v1.0.0/hipsy-events.zip)
+
+1. [`Download the plugin here`](https://github.com/hipsynl/hipsy-wordpress-events/releases/download/v1.2.0/hipsy-events.zip)
 2. Login as administrator on your own Wordpress website
-3. Navigate to *Plugins*, click *Add New* and then click *Upload Plugin* at the top of the page
+3. Navigate to _Plugins_, click _Add New_ and then click _Upload Plugin_ at the top of the page
 4. Select and upload the .zip file you downloaded at step 1
 5. Activate the plugin through the Plugins overview page
 
@@ -29,7 +31,7 @@ Once you've installed the plugin, you have to follow a few steps to configure yo
 3. Click on the green button 'Nieuwe API Key' to create a key and give it a name (e.g. My wordpress website).
 4. Copy the generated key.
 5. Navigate to your Wordpress admin panel and click in the menu at `Hipsy events` (only vissible once you've activated the plugin)
-6. Click on Hipsy settings 
+6. Click on Hipsy settings
 7. Paste the generated API key and click `Save settings`
 8. Select to organisation of which you want to synchronize the events.
 
@@ -42,20 +44,21 @@ Once you've done those steps. The events are automatically synchronized and publ
 If you have successfully installed and configured the plugin on your Wordpress website. An events link will be added
 to your menu. This will navigate to a page which list all your upcoming events.
 
-You are free to remove this link from your menu. Second option is to add the events listing on an existing page. Open the editor of this page and when adding a new block, search for the `Hipsy events list` block. 
+You are free to remove this link from your menu. Second option is to add the events listing on an existing page. Open the editor of this page and when adding a new block, search for the `Hipsy events list` block.
 
 ### Manually add events
 
-It is possible to manually add events to your Wordpress website which you didn't published on Hipsy. Click on the `Add event` menu (under Hipsy events) to add a new event only to your  Wordpress website.
+It is possible to manually add events to your Wordpress website which you didn't published on Hipsy. Click on the `Add event` menu (under Hipsy events) to add a new event only to your Wordpress website.
 
 ### Wordpress shortcode
 
 You can also use legacy Wordpress shortcodes for older Wordpress templates with widget support. Or, you can use shortcodes inside a Gutenberg Shortcode block. Use the following shortcode:
+
 ```
 [hipsy_events limit=10]
 ```
-You can change `limit` into any number you wish to set the amount of events to display. You can also remove the limit parameter and just use `[hipsy_events]`.
 
+You can change `limit` into any number you wish to set the amount of events to display. You can also remove the limit parameter and just use `[hipsy_events]`.
 
 # Frequently Asked Questions
 
@@ -81,10 +84,39 @@ The plugin uses the [Hipsy API](https://docs.hipsy.nl/api-reference/getting-star
 **The Hipsy API remains the source of truth.**
 
 For ease of use, we have a Bruno REST collection in the `hipsy_api_collection` directory. (keep in mind that it might go out of date when the official hispy api changes)
+## Development Setup
+
+### Docker Development Environment
+
+For local development, you can use Docker to run a WordPress instance with the plugin:
+
+1. **Start the Docker environment**:
+
+   ```bash
+   docker-compose up -d
+   ```
+
+2. **Access WordPress**:
+
+   - WordPress will be available at `http://localhost:8080`
+   - Admin credentials: `admin` / `admin`
+   - The plugin is automatically mounted from the current directory
+
+3. **Stop the environment**:
+   ```bash
+   docker-compose down
+   ```
+
+The Docker setup includes:
+
+- WordPress 6.9.0 with PHP 8.2
+- MySQL 8.0 database
+- Automatic WordPress installation and configuration
+- Plugin mounted as a volume for live development
 
 ## Building the Plugin
 
-To create a distributable `.zip` file of the plugin, you can use the provided build script. This script will install dependencies, compile assets (Sass/Tailwind), and package the necessary files.
+To create a distributable `.zip` file of the plugin, you can use the provided build script. This script will install dependencies, compile assets using Vite and Tailwind CSS 4, and package the necessary files.
 
 ### Prerequisites
 
@@ -97,16 +129,21 @@ To create a distributable `.zip` file of the plugin, you can use the provided bu
 Open your terminal in the project root and run:
 
 ```bash
-chmod +x build_zip.sh # Ensure the script is executable
-./build_zip.sh
+# Make scripts executable (only needed once)
+chmod +x scripts/build_zip.sh
+chmod +x scripts/generate_wp_readme.sh
+
+# Run the build script
+./scripts/build_zip.sh
+# or
+yarn build
 ```
 
 ### What the Script Does
 
 1.  **Installs Dependencies**: Runs `yarn install` or `npm install`.
 2.  **Builds Assets**:
-    *   Compiles Sass using Laravel Mix.
-    *   Minifies Tailwind CSS.
+    - Compiles CSS and processes Tailwind CSS 4 using Vite.
 3.  **Packages**: Creates a temporary directory, copies all necessary files (PHP files, blocks, templates, images, compiled styles), and removes unnecessary development files (like node_modules).
 4.  **Zips**: Archives the plugin into `hipsy-events.zip`.
 

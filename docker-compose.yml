@@ -1,0 +1,90 @@
+version: '3.8'
+
+services:
+  wordpress:
+    image: wordpress:6.9.0-php8.2-apache
+    container_name: hipsy-wordpress
+    restart: unless-stopped
+    ports:
+      - "8080:80"
+    environment:
+      WORDPRESS_DB_HOST: db
+      WORDPRESS_DB_USER: wordpress
+      WORDPRESS_DB_PASSWORD: wordpress
+      WORDPRESS_DB_NAME: wordpress
+      WORDPRESS_DEBUG: 1
+      WORDPRESS_URL: http://localhost:8080
+      WORDPRESS_TITLE: Hipsy Events Development
+      WORDPRESS_ADMIN_USER: admin
+      WORDPRESS_ADMIN_PASSWORD: admin
+      WORDPRESS_ADMIN_EMAIL: admin@example.com
+    volumes:
+      - wordpress_data:/var/www/html
+      - ./:/var/www/html/wp-content/plugins/hipsy-events
+      - ./docker-init.sh:/docker-init.sh
+    depends_on:
+      db:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD-SHELL", "test -f /var/www/html/wp-config.php && test -f /var/www/html/wp-load.php"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 30s
+    networks:
+      - wordpress-network
+
+  wordpress-init:
+    image: wordpress:cli-2.12.0-php8.2
+    container_name: hipsy-wordpress-init
+    restart: "no"
+    depends_on:
+      wordpress:
+        condition: service_healthy
+      db:
+        condition: service_healthy
+    environment:
+      WORDPRESS_DB_HOST: db
+      WORDPRESS_DB_USER: wordpress
+      WORDPRESS_DB_PASSWORD: wordpress
+      WORDPRESS_DB_NAME: wordpress
+      WORDPRESS_URL: http://localhost:8080
+      WORDPRESS_TITLE: Hipsy Events Development
+      WORDPRESS_ADMIN_USER: admin
+      WORDPRESS_ADMIN_PASSWORD: admin
+      WORDPRESS_ADMIN_EMAIL: admin@example.com
+    volumes:
+      - wordpress_data:/var/www/html
+      - ./docker-init.sh:/docker-init.sh
+    user: "33:33"
+    command: /bin/bash /docker-init.sh
+    networks:
+      - wordpress-network
+
+  db:
+    image: mysql:8.0
+    container_name: hipsy-mysql
+    restart: unless-stopped
+    environment:
+      MYSQL_DATABASE: wordpress
+      MYSQL_USER: wordpress
+      MYSQL_PASSWORD: wordpress
+      MYSQL_ROOT_PASSWORD: rootpassword
+    volumes:
+      - db_data:/var/lib/mysql
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-u", "root", "-prootpassword"]
+      interval: 5s
+      timeout: 3s
+      retries: 5
+    networks:
+      - wordpress-network
+
+volumes:
+  wordpress_data:
+  db_data:
+
+networks:
+  wordpress-network:
+    driver: bridge
+

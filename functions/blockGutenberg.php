@@ -78,10 +78,51 @@ function render_events_block($attributes)
     $posts_displayed = $events_query->post_count;
 
     if ($total_posts > $posts_displayed) {
+        $load_more_limit = intval($attributes['numberOfPosts']);
         $output .= '<div class="hipsy-load-more-container" style="text-align: center; margin-top: 20px;">
-            <button class="hipsy-load-more button" data-offset="' . esc_attr($posts_displayed) . '" data-limit="10">Load more</button>
+            <button class="hipsy-load-more button" data-offset="' . esc_attr($posts_displayed) . '" data-limit="' . esc_attr($load_more_limit) . '">Load more</button>
         </div>';
     }
 
     return $output;
+}
+
+/**
+ * Register the Single Event Dynamic Block
+ * Used in block themes to render the single event content
+ */
+function hipsy_register_single_event_block()
+{
+    register_block_type('hipsy/single-event', array(
+        'title'           => 'Hipsy Single Event Content',
+        'category'        => 'theme',
+        'render_callback' => 'hipsy_render_single_event_block_callback',
+        'supports'        => array(
+            'html' => false,
+        ),
+    ));
+}
+add_action('init', 'hipsy_register_single_event_block');
+
+/**
+ * Render callback for hipsy/single-event block
+ */
+function hipsy_render_single_event_block_callback($attributes, $content, $block = null)
+{
+    // Use the shared renderer
+    if (function_exists('hipsy_events_render_single_event')) {
+        // Extract post ID from block context if available (more reliable in block themes)
+        $post_id = null;
+        if (isset($block) && isset($block->context['postId'])) {
+            $post_id = (int) $block->context['postId'];
+        }
+
+        // Fall back to get_the_ID() if context is not available
+        if (!$post_id) {
+            $post_id = get_the_ID();
+        }
+
+        return hipsy_events_render_single_event($post_id);
+    }
+    return '';
 }

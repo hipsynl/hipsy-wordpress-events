@@ -24,12 +24,17 @@ jobs:
 
       - name: Build plugin zip
         run: |
-          chmod +x scripts/build_zip.sh scripts/generate_wp_readme.sh
+          chmod +x scripts/build_zip.sh scripts/generate_wp_readme.sh scripts/extract_changelog.sh
           yarn install --frozen-lockfile
           yarn build
+
+      - name: Extract release notes from CHANGELOG
+        run: |
+          VERSION="${GITHUB_REF_NAME#v}"
+          ./scripts/extract_changelog.sh "$VERSION" release-notes.md
 
       - name: Create GitHub Release
         uses: softprops/action-gh-release@v2
         with:
           files: hipsy-events.zip
-          generate_release_notes: true
+          body_path: release-notes.md

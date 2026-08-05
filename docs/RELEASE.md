@@ -10,26 +10,52 @@ This project publishes installable WordPress plugin zips via GitHub Releases. Th
 
 ## Release steps
 
-### 1. Bump the version
+### 1. Write the changelog entry
+
+Add a new section at the top of [`CHANGELOG.md`](../CHANGELOG.md) for the release version:
+
+```markdown
+## [1.2.2] - 2026-08-05
+
+### Security
+- ...
+
+### Fixed
+- ...
+
+### Changed
+- ...
+```
+
+The release workflow extracts the section matching the tag (e.g. `v1.2.2` → `## [1.2.2]`). If no matching entry exists, the workflow fails.
+
+Preview locally:
+
+```bash
+chmod +x scripts/extract_changelog.sh
+./scripts/extract_changelog.sh 1.2.2
+```
+
+### 2. Bump the version
 
 Update the plugin version in both places so the zip and WordPress readme stay in sync:
 
 - [`hipsy-events.php`](../hipsy-events.php) — `Version:` header (source of truth for WordPress)
 - [`package.json`](../package.json) — `version` field (used by `scripts/generate_wp_readme.sh` for `readme.txt` in the zip)
 
-Example: `1.2.0` → `1.2.1`
+Example: `1.2.1` → `1.2.2`
 
-### 2. Commit and push
+### 3. Commit and push
 
 ```bash
-git add hipsy-events.php package.json
-git commit -m "Release v1.2.1"
+git add CHANGELOG.md hipsy-events.php package.json
+git commit -m "Release v1.2.2"
 git push origin main
 ```
 
 Include any other release-related changes in the same commit if needed.
 
-### 3. Create and push a tag
+### 4. Create and push a tag
 
 The tag must match the version with a `v` prefix. This triggers the release workflow.
 
@@ -45,14 +71,15 @@ git tag -a v1.2.1 -m "Release v1.2.1"
 git push origin v1.2.1
 ```
 
-### 4. Wait for GitHub Actions
+### 5. Wait for GitHub Actions
 
 After the tag push, the [Release workflow](../.github/workflows/release.yml) will:
 
 1. Install dependencies with Yarn
 2. Run `yarn build` (compiles assets and runs `scripts/build_zip.sh`)
-3. Create a GitHub Release for the tag
-4. Upload `hipsy-events.zip` as a release asset
+3. Extract release notes from `CHANGELOG.md` for the tagged version
+4. Create a GitHub Release for the tag with those notes
+5. Upload `hipsy-events.zip` as a release asset
 
 Check progress under **Actions** in the GitHub repository.
 
@@ -103,3 +130,9 @@ This creates `hipsy-events.zip` in the project root.
 
 - `readme.txt` inside the zip is generated from `package.json`, not `hipsy-events.php`
 - Keep both version fields in sync when releasing
+
+**Release notes are empty or workflow failed on changelog**
+
+- Ensure `CHANGELOG.md` has a section header exactly matching the tag: `## [1.2.2]`
+- Preview with `./scripts/extract_changelog.sh 1.2.2`
+- For an already-published release with wrong notes, edit the release manually on GitHub (the zip is unaffected)

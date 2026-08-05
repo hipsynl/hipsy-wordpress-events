@@ -10,7 +10,7 @@
  * Plugin Name:   Hipsy Events
  * Plugin URI:    https://hipsy.nl
  * Description:   Sync Hipsy events from your Hipsy organiser account with your Wordpress website, and let people find your events and sell tickets.
- * Version:       1.2.0
+ * Version:       1.2.1
  * Author:        How About Yes
  * Author URI:    https://howaboutyes.com
  * Text Domain:   hipsy-events
@@ -21,6 +21,7 @@ include("templates/loopItem.php");
 include("functions/styles.php");
 include("functions/displayEventsShortcode.php");
 include("functions/deleteOldEvents.php");
+include("functions/ticketSanitizer.php");
 include("functions/createEvent.php");
 include("functions/getHipsyEvents.php");
 include("functions/displaySettings.php");

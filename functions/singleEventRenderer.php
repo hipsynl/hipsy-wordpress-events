@@ -54,9 +54,7 @@ function hipsy_events_render_single_event($post_id = null)
     $url = get_post_meta($post_id, 'hipsy_events_link', true);
     
     $tickets = maybe_unserialize(get_post_meta($post_id, 'hipsy_ticket_info', true));
-    if (!is_array($tickets)) {
-        $tickets = array();
-    }
+    $tickets = hipsy_events_sanitize_tickets($tickets);
 
     $location = get_post_meta($post_id, 'hipsy_events_location', true);
     $title = get_the_title($post_id);

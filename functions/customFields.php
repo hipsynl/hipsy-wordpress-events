@@ -2,7 +2,12 @@
 
 register_rest_field('events', 'metadata', array(
     'get_callback' => function ($data) {
-        return get_post_meta($data['id'], '', '');
+        $post_id = $data['id'];
+
+        return array(
+            'hipsy_events_date'     => get_post_meta($post_id, 'hipsy_events_date', true),
+            'hipsy_events_date_end' => get_post_meta($post_id, 'hipsy_events_date_end', true),
+        );
     },
 ));
 
@@ -11,6 +16,14 @@ function register_hipsy_events_date_meta()
     register_meta('post', 'hipsy_events_date', array(
         'type'              => 'string',
         'description'       => 'Hipsy Events Date',
+        'single'            => true,
+        'sanitize_callback' => 'sanitize_text_field',
+        'show_in_rest'      => true,
+    ));
+
+    register_meta('post', 'hipsy_events_date_end', array(
+        'type'              => 'string',
+        'description'       => 'Hipsy Events End Date',
         'single'            => true,
         'sanitize_callback' => 'sanitize_text_field',
         'show_in_rest'      => true,

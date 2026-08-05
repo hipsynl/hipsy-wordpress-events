@@ -23,7 +23,7 @@ function createEvent($event)
             'hipsy_events_date' => $formatted_date,
             'hipsy_events_date_end' => $formatted_date_until,
             'hipsy_events_link' => $event['url_ticketshop'],
-            'hipsy_ticket_info' => serialize($event['tickets'])
+            'hipsy_ticket_info' => serialize(hipsy_events_sanitize_tickets($event['tickets'] ?? array()))
         ),
     );
     if (get_post($event['id'])) {

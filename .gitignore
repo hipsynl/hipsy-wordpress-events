@@ -5,3 +5,4 @@
 .cursor
 hipsy-events.zip
 readme.txt
+docker-compose.override.yml

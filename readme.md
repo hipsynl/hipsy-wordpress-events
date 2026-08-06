@@ -1,3 +1,13 @@
+# Recommended: use the Hipsy website addon
+
+**We now recommend using the Hipsy website addon instead of this plugin.**
+
+After this WordPress plugin was developed, we built a plug-and-play addon for showing your Hipsy events on your own website. It is not WordPress specific: you simply paste a snippet of code into your website, so it also works on WordPress.
+
+This WordPress plugin still works and can still be used, but the addon is the easier and preferred way to display your events.
+
+Read how to set it up here: [How do I display Hipsy events on my own website?](https://hipsy.eu/help-center/page/how-do-i-display-hipsy-events-on-my-own-website)
+
 # Description
 
 **Introducing the Hipsy Events Plugin for Wordpress**
